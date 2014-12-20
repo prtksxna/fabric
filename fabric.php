@@ -20,7 +20,23 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if ( !defined( 'WPINC' ) ) {
 	die;
 }
+
+
+require_once( dirname( __FILE__ ) . '/class-fabric.php' );
+
+/**
+ * Calls the class on the post edit screen.
+ */
+function call_fabric() {
+	new Fabric();
+}
+
+if ( is_admin() ) {
+	add_action( 'load-post.php', 'call_fabric' );
+	add_action( 'load-post-new.php', 'call_fabric' );
+}
+
 ?>
